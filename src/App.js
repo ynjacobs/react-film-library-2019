@@ -37,13 +37,20 @@ setFaves([...faves, film]);
 
   const handleDetails = (film) => {
     const url = `https://api.themoviedb.org/3/movie/${film.id}?api_key=${TMDB.api_key}&append_to_response=videos,images&language=en`
-
+    console.log(url);
+    
       axios.get(url).then(response => {
           console.log(response.data) // take a look at what we get back!
+          // film = response.data;
+          setDetailedFilm(response.data);
+
+      }).catch(error => {
+        console.log(error);
+        
 
       })
-          console.log('handle details:', film.overview);
-          setDetailedFilm(film);
+          // console.log('handle details:', film.overview);
+          // setDetailedFilm(film);
           
       }
 
