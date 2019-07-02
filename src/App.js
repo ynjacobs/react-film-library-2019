@@ -1,4 +1,5 @@
 import React, { Component , useState } from 'react';
+import axios from 'axios'
 import logo from './logo.svg';
 import './App.css';
 import FilmListing from './FilmListing';
@@ -35,10 +36,16 @@ setFaves([...faves, film]);
 
 
   const handleDetails = (film) => {
-    console.log('handle details:', film.overview);
-    setDetailedFilm(film);
-    
-}
+    const url = `https://api.themoviedb.org/3/movie/${film.id}?api_key=${TMDB.api_key}&append_to_response=videos,images&language=en`
+
+      axios.get(url).then(response => {
+          console.log(response.data) // take a look at what we get back!
+
+      })
+          console.log('handle details:', film.overview);
+          setDetailedFilm(film);
+          
+      }
 
   // const originalFilms = TMDB.films;
 
