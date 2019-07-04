@@ -1,10 +1,12 @@
 import React, { Component , useState } from 'react';
-import axios from 'axios'
+import axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
 import FilmListing from './FilmListing';
 import FilmDetails from './FilmDetails';
 import TMDB from './TMDB';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const App = () => {
 
@@ -38,23 +40,58 @@ setFaves([...faves, film]);
   const handleDetails = (film) => {
     const url = `https://api.themoviedb.org/3/movie/${film.id}?api_key=${TMDB.api_key}&append_to_response=videos,images&language=en`
     console.log(url);
-    
-      axios.get(url).then(response => {
-          console.log(response.data) // take a look at what we get back!
-          // film = response.data;
-          setDetailedFilm(response.data);
+    // const url = `http://localhost:8000/api/game-of-thrones/`
+    // const urlToken = `http://localhost:8000/api/token/`
 
-      }).catch(error => {
-        console.log(error);
+    // var data = {
+    //   "username": process.env.REACT_APP_user_name,
+    //   "password": process.env.REACT_APP_user_password
+    //   };
+    //      axios.post(urlToken, data)
+    //       .then(function(response){
+    //           console.log(response.data)
+    //           localStorage.setItem('token', response.data.access)
+    //       })
+    //       .catch(function (error) {
+    //         console.log(error);
+    //       });
+
+    //     return axios.get(url, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }}).then(response =>console.log(response.data.message)
+    //      );
+
+    
+      // axios.get(url).then(response => {
+      //     console.log(response.data) // take a look at what we get back!
+      //     // film = response.data;
+      //     setDetailedFilm(response.data);
+
+      // }).catch(error => {
+      //   console.log(error);
         
 
-      })
-          // console.log('handle details:', film.overview);
-          // setDetailedFilm(film);
+      // })
+
+        // return axios.get(url, { headers: { Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTYyMTk1Mjk4LCJqdGkiOiJhNzkzOGE1NDJhYmI0ZjUxYWIyNTdlMThiODNjMWQwOSIsInVzZXJfaWQiOjF9.g8n0n09DDieTg5CTHwrthkOuyzy6e9heMtiv1FhNiPM` }}).then(response =>console.log(response.data.message)
+        //  );
+
+    }
+
+      axios.get(url).then(response => {
+        console.log(response.data) // take a look at what we get back!
+        // film = response.data;
+        setDetailedFilm(response.data);
+
+    }).catch(error => {
+      console.log(error);
+      
+
+    })
+          console.log('handle details:', film.overview);
+          setDetailedFilm(film);
           
       }
 
-  // const originalFilms = TMDB.films;
+  const originalFilms = TMDB.films;
 
     return (
       <main className="film-library">
