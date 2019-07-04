@@ -74,11 +74,11 @@ setFaves([...faves, film]);
         // return axios.get(url, { headers: { Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTYyMTk1Mjk4LCJqdGkiOiJhNzkzOGE1NDJhYmI0ZjUxYWIyNTdlMThiODNjMWQwOSIsInVzZXJfaWQiOjF9.g8n0n09DDieTg5CTHwrthkOuyzy6e9heMtiv1FhNiPM` }}).then(response =>console.log(response.data.message)
         //  );
 
-    }
+    
 
       axios.get(url).then(response => {
         console.log(response.data) // take a look at what we get back!
-        // film = response.data;
+        film = response.data;
         setDetailedFilm(response.data);
 
     }).catch(error => {
